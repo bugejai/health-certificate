@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康证明 - 浙江省卫生健康委员会</title>
+    <style>
+        :root {
+            --primary-color: #1677ff;
+            --primary-dark: #0958d9;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --text-tertiary: #999;
+            --border-color: #f0f0f0;
+            --border-dark: #eee;
+            --bg-white: #fff;
+            --bg-gray: #f5f5f5;
+            --bg-black: #000;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-gray);
+            color: var(--text-primary);
+            line-height: 1.5;
+            font-size: 14px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: var(--bg-black);
+            color: #fff;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .header h1 {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .close-btn {
+            font-size: 24px;
+            line-height: 1;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            transition: opacity 0.2s;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover { opacity: 0.8; }
+        .close-btn:active { background-color: rgba(255, 255, 255, 0.1); }
+
+        .domain {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-align: center;
+            background-color: var(--bg-black);
+            padding: 8px 16px 12px;
+            border-bottom: 1px solid #222;
+        }
+
+        .container {
+            background-color: var(--bg-white);
+            margin: 16px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.3s;
+        }
+
+        .container:hover { box-shadow: var(--shadow-md); }
+
+        .section {
+            padding: 20px 16px;
+            border-bottom: 1px solid var(--border-dark);
+            position: relative;
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+        }
+
+        .section-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            background-color: var(--primary-color);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+
+        .icon-user {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0 8c-1.79 0-3.24 1.31-3.46 3h6.92c-.22-1.69-1.67-3-3.46-3z'/%3E%3C/svg%3E");
+        }
+
+        .icon-info {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z'/%3E%3C/svg%3E");
+        }
+
+        .icon-company {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-4v2h4v-2zm0 4h-4v2h4v-2z'/%3E%3C/svg%3E");
+        }
+
+        .icon-certificate {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-9 16H5v-2h6v2zm8-4H5v-2h14v2zm0-4H5V8h14v2z'/%3E%3C/svg%3E");
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+
+        .info-row:hover { background-color: rgba(22, 119, 255, 0.02); }
+        .info-row:last-child { border-bottom: none; }
+
+        .label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .value {
+            color: var(--text-primary);
+            font-size: 14px;
+            text-align: right;
+            max-width: 65%;
+            word-break: break-word;
+            font-weight: 500;
+        }
+
+        .value.empty {
+            color: var(--text-tertiary);
+            font-style: italic;
+        }
+
+        .photo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .photo {
+            width: 110px;
+            height: 140px;
+            object-fit: cover;
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-sm);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .photo.show {
+            display: block;
+        }
+
+        .photo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo-placeholder {
+            width: 110px;
+            height: 140px;
+            background: linear-gradient(135deg, #f5f5f5 25%, #e8e8e8 25%, #e8e8e8 50%, #f5f5f5 50%, #f5f5f5 75%, #e8e8e8 75%);
+            background-size: 20px 20px;
+            border: 2px dashed #1677ff;
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1677ff;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            background: linear-gradient(135deg, #e8f4ff 25%, #d1e9ff 25%, #d1e9ff 50%, #e8f4ff 50%, #e8f4ff 75%, #d1e9ff 75%);
+            border-color: #0958d9;
+        }
+
+        .photo-placeholder-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #1677ff;
+        }
+
+        .status-message {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .status-message.show {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        @media print {
+            body { background-color: white; font-size: 12px; }
+            .header, .domain, .photo-placeholder { display: none; }
+            .container { margin: 0; box-shadow: none; border-radius: 0; }
+            .section { break-inside: avoid; page-break-inside: avoid; }
+            .photo { border: 1px solid #ddd; display: block !important; }
+        }
+
+        @media (max-width: 375px) {
+            .container { margin: 12px; }
+            .section { padding: 16px 12px; }
+            .photo, .photo-placeholder { width: 90px; height: 115px; }
+            .info-row { padding: 12px 0; }
+            .label, .value { font-size: 13px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { animation: fadeIn 0.5s ease-out; }
+    </style>
+</head>
+<body>
+    <header class="header" role="banner">
+        <button class="close-btn" id="closeBtn" aria-label="关闭页面">×</button>
+        <h1>健康证明</h1>
+        <div style="width: 24px;"></div>
+    </header>
+    
+    <div class="domain" role="contentinfo">cytj.wsjkw.zj.gov.cn</div>
+    
+    <main class="container" role="main">
+        <section class="section" id="basic-info" aria-labelledby="basic-title">
+            <h2 class="section-title" id="basic-title">
+                <span class="section-icon icon-user" aria-hidden="true"></span>基础信息
+            </h2>
+            <div class="info-row"><span class="label">证件类型</span><span class="value">居民身份证</span></div>
+            <div class="info-row"><span class="label">证件号码</span><span class="value">3****82123108*****8</span></div>
+            <div class="info-row"><span class="label">姓名</span><span class="value">*忠</span></div>
+            <div class="info-row"><span class="label">性别</span><span class="value">男</span></div>
+            <div class="info-row"><span class="label">出生日期</span><span class="value">1998-08-08</span></div>
+        </section>
+
+        <section class="section" id="personal-info" aria-labelledby="personal-title">
+            <h2 class="section-title" id="personal-title">
+                <span class="section-icon icon-info" aria-hidden="true"></span>个人信息
+            </h2>
+            <div class="info-row"><span class="label">年龄</span><span class="value">26</span></div>
+            <div class="info-row"><span class="label">联系方式</span><span class="value">136****6078</span></div>
+            <div class="info-row"><span class="label">文化程度</span><span class="value empty">未填写</span></div>
+            <div class="info-row">
+                <span class="label">个人照片</span>
+                <div class="photo-container">
+                    <!-- 手动加载占位符 -->
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <div class="photo-placeholder-icon">📷</div>
+                        <div>点击加载个人照片</div>
+                    </div>
+                    <!-- 照片显示区域 -->
+                    <img id="userPhoto" class="photo" alt="个人照片">
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="company-info" aria-labelledby="company-title">
+            <h2 class="section-title" id="company-title">
+                <span class="section-icon icon-company" aria-hidden="true"></span>单位信息
+            </h2>
+            <div class="info-row"><span class="label">专业类别</span><span class="value">食品/公共场所</span></div>
+            <div class="info-row"><span class="label">工龄</span><span class="value empty">未填写</span></div>
+        </section>
+
+        <section class="section" id="certificate-info" aria-labelledby="certificate-title">
+            <h2 class="section-title" id="certificate-title">
+                <span class="section-icon icon-certificate" aria-hidden="true"></span>健康证信息
+            </h2>
+            <div class="info-row"><span class="label">发证日期</span><span class="value">2026-01-30</span></div>
+            <div class="info-row"><span class="label">有效期至</span><span class="value">2027-01-29</span></div>
+            <div class="info-row"><span class="label">健康证编码</span><span class="value">009SF012601300017</span></div>
+            <div class="info-row"><span class="label">发证机构</span><span class="value">高照街道社区卫生服务中心</span></div>
+        </section>
+    </main>
+
+    <!-- 状态消息 -->
+    <div class="status-message" id="statusMessage"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 元素引用
+            const userPhoto = document.getElementById('userPhoto');
+            const photoPlaceholder = document.getElementById('photoPlaceholder');
+            const statusMessage = document.getElementById('statusMessage');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            // 保存选择的图片数据（用于刷新后保持）
+            let selectedPhotoData = null;
+
+            // 显示状态消息
+            function showStatus(text, type = 'info') {
+                statusMessage.textContent = text;
+                statusMessage.style.background = type === 'success' ? 'rgba(82, 196, 26, 0.9)' : 
+                                               type === 'error' ? 'rgba(255, 77, 79, 0.9)' : 
+                                               'rgba(0, 0, 0, 0.8)';
+                statusMessage.classList.add('show');
+                setTimeout(() => {
+                    statusMessage.classList.remove('show');
+                }, 3000);
+                console.log(`📢 ${text}`);
+            }
+
+            // 加载照片功能
+            function loadPhoto() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.style.display = 'none';
+                
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        // 验证文件类型
+                        if (!file.type.startsWith('image/')) {
+                            showStatus('请选择图片文件！', 'error');
+                            return;
+                        }
+                        
+                        // 验证文件大小（最大5MB）
+                        if (file.size > 5 * 1024 * 1024) {
+                            showStatus('图片太大，请选择小于5MB的文件', 'error');
+                            return;
+                        }
+                        
+                        const reader = new FileReader();
+                        
+                        reader.onloadstart = function() {
+                            showStatus('正在读取图片...', 'info');
+                        };
+                        
+                        reader.onload = function(e) {
+                            // 设置图片源
+                            userPhoto.src = e.target.result;
+                            userPhoto.classList.add('show');
+                            photoPlaceholder.style.display = 'none';
+                            
+                            // 保存到本地存储
+                            selectedPhotoData = e.target.result;
+                            try {
+                                localStorage.setItem('healthCertPhoto', e.target.result);
+                                showStatus('✅ 照片加载成功！已自动保存', 'success');
+                            } catch (err) {
+                                showStatus('✅ 照片加载成功！（本地存储失败）', 'success');
+                            }
+                        };
+                        
+                        reader.onerror = function() {
+                            showStatus('图片读取失败，请重试', 'error');
+                        };
+                        
+                        reader.readAsDataURL(file);
+                    }
+                };
+                
+                document.body.appendChild(input);
+                input.click();
+                document.body.removeChild(input);
+            }
+
+            // 尝试从本地存储加载之前保存的照片
+            function loadSavedPhoto() {
+                try {
+                    const savedPhoto = localStorage.getItem('healthCertPhoto');
+                    if (savedPhoto) {
+                        // 检查是否是有效的Base64图片
+                        if (savedPhoto.startsWith('data:image/')) {
+                            userPhoto.src = savedPhoto;
+                            userPhoto.classList.add('show');
+                            photoPlaceholder.style.display = 'none';
+                            selectedPhotoData = savedPhoto;
+                            console.log('✅ 已加载上次保存的照片');
+                        }
+                    }
+                } catch (err) {
+                    console.log('未找到保存的照片');
+                }
+            }
+
+            // 清除照片
+            function clearPhoto() {
+                userPhoto.src = '';
+                userPhoto.classList.remove('show');
+                photoPlaceholder.style.display = 'flex';
+                selectedPhotoData = null;
+                localStorage.removeItem('healthCertPhoto');
+                showStatus('照片已清除', 'info');
+            }
+
+            // 初始化
+            function init() {
+                // 加载保存的照片
+                loadSavedPhoto();
+                
+                // 照片占位符点击事件
+                photoPlaceholder.addEventListener('click', loadPhoto);
+                
+                // 照片右键菜单（长按移动端）
+                userPhoto.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    if (confirm('是否清除当前照片？')) {
+                        clearPhoto();
+                    }
+                    return false;
+                });
+                
+                // 关闭按钮功能
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        if (window.history.length > 1) {
+                            window.history.back();
+                        } else {
+                            window.close();
+                        }
+                    });
+                }
+                
+                // 打印按钮
+                const printBtn = document.createElement('button');
+                printBtn.textContent = '打印证明';
+                printBtn.style.cssText = `
+                    position: fixed; bottom: 20px; right: 20px;
+                    background: #1677ff; color: white; border: none;
+                    padding: 12px 24px; border-radius: 25px;
+                    font-size: 14px; cursor: pointer;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 100; transition: all 0.3s;
+                    font-family: inherit;
+                `;
+                printBtn.onmouseenter = () => {
+                    printBtn.style.background = '#0958d9';
+                    printBtn.style.transform = 'translateY(-2px)';
+                };
+                printBtn.onmouseleave = () => {
+                    printBtn.style.background = '#1677ff';
+                    printBtn.style.transform = 'translateY(0)';
+                };
+                printBtn.onclick = () => window.print();
+                document.body.appendChild(printBtn);
+                
+                // 清除照片按钮
+                const clearBtn = document.createElement('button');
+                clearBtn.textContent = '清除照片';
+                clearBtn.style.cssText = `
+                    position: fixed; bottom: 20px; left: 20px;
+                    background: #ff4d4f; color: white; border: none;
+                    padding: 12px 24px; border-radius: 25px;
+                    font-size: 14px; cursor: pointer;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    z-index: 100; transition: all 0.3s;
+                    font-family: inherit;
+                    display: ${selectedPhotoData ? 'block' : 'none'};
+                `;
+                clearBtn.onmouseenter = () => {
+                    clearBtn.style.background = '#d9363e';
+                    clearBtn.style.transform = 'translateY(-2px)';
+                };
+                clearBtn.onmouseleave = () => {
+                    clearBtn.style.background = '#ff4d4f';
+                    clearBtn.style.transform = 'translateY(0)';
+                };
+                clearBtn.onclick = clearPhoto;
+                document.body.appendChild(clearBtn);
+                
+                // 监听照片变化，更新清除按钮显示
+                const observer = new MutationObserver(function() {
+                    clearBtn.style.display = userPhoto.classList.contains('show') ? 'block' : 'none';
+                });
+                observer.observe(userPhoto, { attributes: true, attributeFilter: ['class'] });
+                
+                // 页面可见性变化时重新检查图片
+                document.addEventListener('visibilitychange', function() {
+                    if (!document.hidden && selectedPhotoData && !userPhoto.src) {
+                        userPhoto.src = selectedPhotoData;
+                    }
+                });
+                
+                // 键盘快捷键
+                document.addEventListener('keydown', function(e) {
+                    // Ctrl+P 打印
+                    if (e.ctrlKey && e.key === 'p') {
+                        e.preventDefault();
+                        window.print();
+                    }
+                    // Esc 关闭
+                    if (e.key === 'Escape') {
+                        closeBtn.click();
+                    }
+                    // Space 加载照片（当焦点在占位符上时）
+                    if (e.key === ' ' && document.activeElement === photoPlaceholder) {
+                        e.preventDefault();
+                        loadPhoto();
+                    }
+                });
+                
+                // 初始化完成提示
+                console.log('✅ 健康证明页面初始化完成');
+                console.log('📸 点击照片区域加载个人照片');
+                console.log('🖨️ 点击右下角按钮打印证明');
+            }
+
+            // 启动初始化
+            init();
+        });
+
+        // 页面卸载前保存状态
+        window.addEventListener('beforeunload', function() {
+            const userPhoto = document.getElementById('userPhoto');
+            if (userPhoto && userPhoto.src && userPhoto.src.startsWith('data:image/')) {
+                try {
+                    localStorage.setItem('healthCertPhoto', userPhoto.src);
+                } catch (err) {
+                    // 忽略存储错误
+                }
+            }
+        });
+    </script>
+</body>
+</html>
