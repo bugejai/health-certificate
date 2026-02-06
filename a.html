@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康证明 - 浙江省卫生健康委员会</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #000;
+            color: #fff;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header h1 {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .close-btn {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .domain {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            background-color: #000;
+            padding-bottom: 8px;
+        }
+        .container {
+            background-color: #fff;
+            margin: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .section {
+            padding: 16px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1677ff;
+            margin-bottom: 16px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            color: #666;
+            font-size: 14px;
+        }
+        .value {
+            color: #333;
+            font-size: 14px;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-all;
+        }
+        .photo {
+            width: 100px;
+            height: 130px;
+            object-fit: cover;
+            border: 1px solid #eee;
+            display: none;
+        }
+        .photo.show {
+            display: block;
+        }
+        .photo-placeholder {
+            width: 100px;
+            height: 130px;
+            border: 2px dashed #1677ff;
+            background: #f0f8ff;
+            color: #1677ff;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .photo-placeholder:hover {
+            background: #e6f7ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="close-btn" id="closeBtn">×</span>
+        <h1>健康证明</h1>
+        <div></div>
+    </div>
+    <div class="domain">cytj.wsjkw.zj.gov.cn</div>
+
+    <div class="container">
+        <!-- 基础信息 -->
+        <div class="section">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.34 6 9 7.34 9 9C9 10.66 10.34 12 12 12C13.66 12 15 10.66 15 9C15 7.34 13.66 6 12 6ZM12 14C9.79 14 8 15.79 8 18H16C16 15.79 14.21 14 12 14Z" fill="#1677ff"/>
+                </svg>
+                基础信息
+            </div>
+            <div class="info-row">
+                <span class="label">证件类型</span>
+                <span class="value">居民身份证</span>
+            </div>
+            <div class="info-row">
+                <span class="label">证件号码</span>
+                <span class="value">3****82123108*****8</span>
+            </div>
+            <div class="info-row">
+                <span class="label">姓名</span>
+                <span class="value">*忠</span>
+            </div>
+            <div class="info-row">
+                <span class="label">性别</span>
+                <span class="value">男</span>
+            </div>
+            <div class="info-row">
+                <span class="label">出生日期</span>
+                <span class="value">1998-08-08</span>
+            </div>
+        </div>
+
+        <!-- 个人信息 -->
+        <div class="section">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.34 6 9 7.34 9 9C9 10.66 10.34 12 12 12C13.66 12 15 10.66 15 9C15 7.34 13.66 6 12 6ZM12 14C9.79 14 8 15.79 8 18H16C16 15.79 14.21 14 12 14Z" fill="#1677ff"/>
+                </svg>
+                个人信息
+            </div>
+            <div class="info-row">
+                <span class="label">年龄</span>
+                <span class="value">26</span>
+            </div>
+            <div class="info-row">
+                <span class="label">联系方式</span>
+                <span class="value">136****6078</span>
+            </div>
+            <div class="info-row">
+                <span class="label">文化程度</span>
+                <span class="value"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">个人照片</span>
+                <div class="photo-container">
+                    <div class="photo-placeholder" id="loadPhotoBtn">
+                        📷<br>
+                        点击加载照片
+                    </div>
+                    <img id="userPhoto" class="photo" alt="个人照片">
+                </div>
+            </div>
+        </div>
+
+        <!-- 单位信息 -->
+        <div class="section">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.34 6 9 7.34 9 9C9 10.66 10.34 12 12 12C13.66 12 15 10.66 15 9C15 7.34 13.66 6 12 6ZM12 14C9.79 14 8 15.79 8 18H16C16 15.79 14.21 14 12 14Z" fill="#1677ff"/>
+                </svg>
+                单位信息
+            </div>
+            <div class="info-row">
+                <span class="label">专业类别</span>
+                <span class="value">食品/公共场所</span>
+            </div>
+            <div class="info-row">
+                <span class="label">工龄</span>
+                <span class="value"></span>
+            </div>
+        </div>
+
+        <!-- 健康证信息 -->
+        <div class="section">
+            <div class="section-title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12 6C10.34 6 9 7.34 9 9C9 10.66 10.34 12 12 12C13.66 12 15 10.66 15 9C15 7.34 13.66 6 12 6ZM12 14C9.79 14 8 15.79 8 18H16C16 15.79 14.21 14 12 14Z" fill="#1677ff"/>
+                </svg>
+                健康证信息
+            </div>
+            <div class="info-row">
+                <span class="label">发证日期</span>
+                <span class="value">2026-01-30</span>
+            </div>
+            <div class="info-row">
+                <span class="label">有效期至</span>
+                <span class="value">2027-01-29</span>
+            </div>
+            <div class="info-row">
+                <span class="label">健康证编码</span>
+                <span class="value">009SF012601300017</span>
+            </div>
+            <div class="info-row">
+                <span class="label">发证机构</span>
+                <span class="value">高照街道社区卫生服务中心</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadPhotoBtn = document.getElementById('loadPhotoBtn');
+            const userPhoto = document.getElementById('userPhoto');
+            const closeBtn = document.getElementById('closeBtn');
+
+            // 加载保存的照片（浏览器本地存储）
+            function loadSavedPhoto() {
+                try {
+                    const savedPhoto = localStorage.getItem('healthCertPhoto');
+                    if (savedPhoto && savedPhoto.startsWith('data:image/')) {
+                        userPhoto.src = savedPhoto;
+                        userPhoto.classList.add('show');
+                        loadPhotoBtn.style.display = 'none';
+                    }
+                } catch (err) {
+                    // 忽略错误
+                }
+            }
+
+            // 加载照片功能
+            function loadPhoto() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.style.display = 'none';
+                
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            // 设置图片源
+                            userPhoto.src = e.target.result;
+                            userPhoto.classList.add('show');
+                            loadPhotoBtn.style.display = 'none';
+                            
+                            // 保存到本地存储
+                            try {
+                                localStorage.setItem('healthCertPhoto', e.target.result);
+                            } catch (err) {
+                                // 忽略存储错误
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+                
+                document.body.appendChild(input);
+                input.click();
+                document.body.removeChild(input);
+            }
+
+            // 清除照片（可选功能）
+            function clearPhoto() {
+                if (confirm('是否清除照片？')) {
+                    localStorage.removeItem('healthCertPhoto');
+                    loadPhotoBtn.style.display = 'flex';
+                    userPhoto.classList.remove('show');
+                    userPhoto.src = '';
+                }
+            }
+
+            // 初始化
+            function init() {
+                // 加载保存的照片
+                loadSavedPhoto();
+                
+                // 照片按钮点击事件
+                loadPhotoBtn.addEventListener('click', loadPhoto);
+                
+                // 照片右键点击可以清除
+                userPhoto.addEventListener('contextmenu', function(e) {
+                    e.preventDefault();
+                    clearPhoto();
+                    return false;
+                });
+                
+                // 关闭按钮功能
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        if (window.history.length > 1) {
+                            window.history.back();
+                        } else {
+                            window.close();
+                        }
+                    });
+                }
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>
